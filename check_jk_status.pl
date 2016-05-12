@@ -124,10 +124,10 @@ sub ParseXML
     my @bad_members = ();
 
     ### Convert XML to hash
-    my $status = XMLin("/tmp/$xml", forcearray => ['jk:member']);
+    my $status = XMLin("/tmp/$xml", forcearray => ['jk:member', 'jk:balancer']);
     
     ### Exit if specified balancer wasn't found
-    PrintExit ("Supplied balancer wasn't found!") unless defined ( %{$status->{'jk:balancers'}->{'jk:balancer'}->{$balancer}} );
+    PrintExit ("Supplied balancer wasn't found!") unless exists $status->{'jk:balancers'}->{'jk:balancer'}->{$balancer};
     
     ### Get number of members
     my $member_count = $status->{'jk:balancers'}->{'jk:balancer'}->{$balancer}->{'member_count'};
