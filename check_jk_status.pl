@@ -98,7 +98,7 @@ sub FetchStatus
     $unique .= ".xml";
     
     ### Construct URL
-    my $url = "http://$ip/$uri/?mime=xml";
+    my $url = "http://$ip$uri/?mime=xml";
     
     ### Fetch XML
     open(FETCH, "wget -q -O /tmp/$unique $url >/dev/null 2>&1 |") || PrintExit("Failed to run wget: $!");
